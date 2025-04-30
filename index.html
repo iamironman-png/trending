@@ -38,7 +38,7 @@
       });
 
     function getTrends(countryCode) {
-      fetch(`https://your-server-url.com/trends?geo=${countryCode}`)
+      fetch(`https://trends-backend.onrender.com/trends?geo=${countryCode}`)
         .then((res) => res.json())
         .then((data) => {
           const trendDiv = document.getElementById("trends");
