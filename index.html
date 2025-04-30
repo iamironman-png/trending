@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nearby Trending Searches</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+    }
+    .trend {
+      background: white;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>What People Near You Are Googling</h1>
+  <p id="location"></p>
+  <div id="trends">Loading trends...</div>
+
+  <script>
+    fetch("https://ipapi.co/json/")
+      .then((res) => res.json())
+      .then((data) => {
+        const country = data.country_code;
+        const city = data.city;
+        document.getElementById("location").textContent = `Location: ${city}, ${country}`;
+        getTrends(country);
+      });
+
+    function getTrends(countryCode) {
+      fetch(`https://your-server-url.com/trends?geo=${countryCode}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const trendDiv = document.getElementById("trends");
+          trendDiv.innerHTML = '';
+          data.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "trend";
+            div.innerHTML = `<strong>#${index + 1}:</strong> ${item}`;
+            trendDiv.appendChild(div);
+          });
+        })
+        .catch(err => {
+          document.getElementById("trends").innerHTML = "Failed to fetch trends.";
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
