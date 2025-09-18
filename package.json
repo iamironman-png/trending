@@ -1,13 +1,13 @@
 {
-  "name": "nearby-trends",
+  "name": "portfolio-website",
   "version": "1.0.0",
-  "main": "server.js",
+  "description": "A modern portfolio website showcasing skills and projects",
+  "main": "index.html",
   "scripts": {
-    "start": "node server.js"
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
   },
-  "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "google-trends-api": "^4.9.0"
-  }
+  "keywords": ["portfolio", "website", "personal", "developer"],
+  "author": "Your Name",
+  "license": "MIT"
 }
